@@ -1,30 +1,24 @@
-let prenom = document.getElementById("first-name").value;
-let nom = document.getElementById("last-name").value;
-let commentaire = document.getElementById("message").value;
+let form = document.querySelector('form');
+let prenomForm = document.getElementById('first-name');
+let nomForm = document.getElementById('last-name');
+let messageForm = document.getElementById('message');
+let messageErreur = document.getElementById('error-message');
 
-const champVide = document.getElementById("error-message");
-const bouton = document.querySelector("button");
+function envoiCom(event) {
 
+  if (!prenomForm.value || !nomForm.value || !messageForm.value) {
+  messageErreur.style.display = 'block';
+  } else {
+  messageErreur.style.display = 'none';
+  }
 
-function sendComment() {
+event.preventDefault();
 
-    event.preventDefault();
+let newCom = {
+  prenomForm: prenomForm.value, nomForm: nomForm.value, messageForm: messageForm.value
+};
 
-    if (prenom == ""){
-        champVide.style.display = "block";
-    } else {
-        erreur.style.display = "none";
-    }
-    if (nom == ""){
-        champVide.style.display = "block";
-    } else {
-        champVide.style.display = "none";
-    }
-    if (commentaire == ""){
-        champVide.style.display = "block";
-    } else {
-        champVide.style.display = "none";
-    }
+form.reset();
 }
 
-bouton.addEventListener("click", sendComment);
+form.addEventListener('submit', envoiCom);
